@@ -211,35 +211,11 @@ export const productionAPI = {
     return []
   },
   getStats: async () => {
-    try {
-      // Obtener datos de producción desde la base de datos
-      const { data: productions, error } = await supabase
-        .from('production')
-        .select('cost')
-
-      if (error) {
-        console.error('Error fetching production data:', error)
-        return {
-          totalProductionValue: 0,
-          totalCosts: 0,
-          netProfit: 0
-        }
-      }
-
-      const totalProductionValue = productions?.reduce((sum, prod) => sum + (prod.cost || 0), 0) || 0
-
-      return {
-        totalProductionValue,
-        totalCosts: totalProductionValue,
-        netProfit: 0
-      }
-    } catch (error) {
-      console.error('Error loading production stats:', error)
-      return {
-        totalProductionValue: 0,
-        totalCosts: 0,
-        netProfit: 0
-      }
+    // La funcionalidad de producción no está implementada, así que se retorna un objeto vacío
+    return {
+      totalProductionValue: 0,
+      totalCosts: 0,
+      netProfit: 0
     }
   },
 

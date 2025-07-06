@@ -48,13 +48,6 @@ function Sales() {
   const [showFilters, setShowFilters] = useState(false)
   const [actionLoading, setActionLoading] = useState({})
 
-  // Filtrar ventas por término de búsqueda
-  const searchedSales = filteredSales.filter(sale =>
-    sale.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    sale.phone?.includes(searchTerm) ||
-    sale.address?.toLowerCase().includes(searchTerm.toLowerCase())
-  )
-
   const handleEdit = (sale) => {
     setEditingSale(sale)
     setShowSalesModal(true)
@@ -259,6 +252,13 @@ function Sales() {
       </div>
     )
   }
+
+  // Filtrar ventas por término de búsqueda
+  const searchedSales = filteredSales.filter(sale =>
+    sale.customer_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    sale.phone?.includes(searchTerm) ||
+    sale.address?.toLowerCase().includes(searchTerm.toLowerCase())
+  )
 
   return (
     <div className="space-y-6 sm:space-y-8">
