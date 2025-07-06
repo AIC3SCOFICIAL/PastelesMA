@@ -184,6 +184,18 @@ export function SalesProvider({ children }) {
     }
   }
 
+  // Funciones auxiliares para determinar estados simplificados
+  const getPaymentStatus = (sale) => {
+    return sale.status || 'pendiente'
+  }
+
+  const getDeliveryStatus = (sale) => {
+    if (sale.delivery_status === 'entregado') {
+      return 'entregada'
+    }
+    return 'no_entregada'
+  }
+
   // Filtrar ventas según los filtros activos
   const filteredSales = state.sales.filter(sale => {
     const { status, payment_method, delivery, tipo, customer, date_from, date_to } = state.filters
@@ -221,18 +233,6 @@ export function SalesProvider({ children }) {
     
     return true
   })
-
-  // Funciones auxiliares para determinar estados simplificados
-  const getPaymentStatus = (sale) => {
-    return sale.status || 'pendiente'
-  }
-
-  const getDeliveryStatus = (sale) => {
-    if (sale.delivery_status === 'entregado') {
-      return 'entregada'
-    }
-    return 'no_entregada'
-  }
 
   // Funciones para acciones rápidas - versión simplificada
   const markAsPaid = async (saleId) => {
